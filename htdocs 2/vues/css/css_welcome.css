@@ -1,0 +1,101 @@
+@charset "utf-8";
+html {
+	text-align: left;
+	height: 100%;
+	width: 100%;
+}
+*{margin:0px auto;padding:0px;}
+body {
+	font-family: "Open Sans", Arial, sans-serif;
+	line-height: 1.6;
+	font-size: 16px;
+	color: #000;
+	font-weight: 300;
+	overflow-x: hidden;
+	background: url(../img/background.jpg) top repeat-y;
+	background-attachment: fixed;
+	webkit-background-size: cover;
+	background-size: cover;
+}
+.title {
+	position: absolute;
+	color:#fff;
+}
+div,form,img,ul,li,input,p,ul,ol,li,form{margin:0px;padding:0px;border:0px; list-style:none; }
+.clear{ clear:both;font-size:0; height:0; line-height:0;}
+
+
+#welcome{
+	position: absolute;
+	width: 100%;
+	height: 200px;
+	top:35%;
+	/*bottom:300px*/
+	background: url(../img/img_back.png);
+}
+
+#welcome .logo{
+	height: 83px;
+	background: url(../img/logo3.png) no-repeat center;
+	margin-top: 32px;
+	margin-bottom:10px;
+}
+
+#welcome .link_box{
+	position: relative;
+	width: 480px;
+	height: 35px;
+	margin: 0px auto;
+	/*background: red;*/
+	/*clear: both;*/
+}
+
+#welcome .link_box .userlink {
+	float: left;
+	width: 167px;
+	height: 35px;
+	line-height: 35px;
+	
+	padding-left: 35px;
+}
+
+#welcome .link_box .adminlink {
+	float: left;
+	width: 167px;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 15px;
+	
+	padding-left: 35px;
+}
+
+#login .login_box .username{
+	float: left;
+	width: 167px;
+	height: 35px;
+	line-height: 35px;
+	
+	padding-left: 35px;
+	/*border-radius: 5px;
+	behavior: url(css/ie-css3.htc);*/
+}
+#login .login_box .password{
+	float: left;
+	width: 167px;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 15px;
+	
+	padding-left: 35px;
+	/*border-radius: 5px;
+	behavior: url(css/ie-css3.htc);*/
+}
+#login .login_box .submit{
+	float: left;
+	margin-left: 15px;
+	width: 34px;
+	height: 34px;
+	
+	outline: none;
+	cursor: pointer;
+}

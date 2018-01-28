@@ -1,0 +1,111 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: "Open Sans", Arial, sans-serif;
+	line-height: 1.6;
+	font-size: 16px;
+	color: #000;
+	font-weight: 300;
+	overflow-x: hidden;
+	background: url(../img/background.jpg) top repeat-y;
+	background-attachment: fixed;
+	webkit-background-size: cover;
+	background-size: cover;
+}
+
+td {
+	font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.loginform {
+	width: 360px;
+	height: 400px;
+	background-color: #3e3d3e;
+	filter: alpha(Opacity = 60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+	position: absolute;
+	top: 170px;
+	right: 40px;
+}
+
+.login_table {
+	height: 200px;
+	width: 300px;
+	float: center;
+	height: 200px;
+	position: relative;
+	left: 40px;
+	top: 40px;
+}
+
+.login_table_logo {
+	align-content: center;
+	width: 305px;
+	height: 80px;
+	position: relative;
+	left: 30px;
+	top: 30px;
+	background: url('../img/logo3.png');
+}
+
+.form_control {
+	background: rgba(0, 0, 0, 0.05);
+	border: none;
+	box-shadow: none;
+	width: 100%;
+	font-size: 16px;
+	padding: 5px 10px !important;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	border-radius: 0;
+	color: #F78536 !important;
+}
+
+.form_control:focus, .form_control:active {
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+input[type="text"], input[type="password"] {
+	height: 30px;
+	width: 100%;
+}
+
+.form_control_btn {
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	-webkit-transition: 0.3s;
+	-o-transition: 0.3s;
+	transition: 0.3s;
+	background: #F78536;
+	color: #fff;
+	border: none !important;
+	border: 2px solid transparent !important;
+	float: none;
+	width: 100%;
+}
+
+.form_control_btn:hover, .form_control_btn:focus, .form_control_btn:active
+	{
+	background: #393e46 !important;
+	color: #fff;
+	outline: none !important;
+	box-shadow: none;
+}
+
+#account, #password {
+	font-size: 18px;
+	font-weight: bold;
+	color: #F78536 !important;
+	text-align: center;
+}
+
+#password_input, #account_input {
+	width: 90%;
+	background-color: #d1daea;
+	color: #2c1407 !important;
+}
