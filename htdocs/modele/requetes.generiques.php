@@ -64,7 +64,7 @@ function insertion(PDO $bdd, array $values, string $table): bool {
     $valeurs = substr_replace($valeurs, '', -2, 2);
 
     $query = ' INSERT INTO ' . $table . ' (' . $attributs . ') VALUES (' . $valeurs . ')';
-    
+    //var_dump($query);
     $donnees = $bdd->prepare($query);
     $requete = "";
     foreach ($values as $key => $value) {
@@ -72,6 +72,26 @@ function insertion(PDO $bdd, array $values, string $table): bool {
         $donnees->bindParam($key, $values[$key], PDO::PARAM_STR);
     }
 
+    return $donnees->execute();
+}
+
+function delete(PDO $bdd, string $table, array $attributs): bool {
+    
+    $where = "";
+    
+    var_dump($attributs);
+    foreach($attributs as $key => $value) {
+      $where .= $key." = ".$value." and ";
+    }
+     $where = substr_replace($where, '', -5, 4);
+
+    
+     $query = ' DELETE FROM ' . $table . ' WHERE ' . $where;
+    //var_dump($query);
+
+    $donnees = $bdd->prepare($query);
+
+ 
     return $donnees->execute();
 }
 

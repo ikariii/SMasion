@@ -8,7 +8,7 @@
 include('requetes.generiques.php');
 
 //name of the table
-$table = "sensors";
+$table = "Sensor";
 
 
 
@@ -22,6 +22,11 @@ $table = "sensors";
 function searchByType(PDO $bdd, string $table, string $type): array {
     
     return search($bdd, $table, ['type' => $type]);
+    
+}
+function searchById(PDO $bdd, string $table, string $RoomId): array {
+    
+    return search($bdd, $table, ['RoomId' => $RoomId]);
     
 }
 

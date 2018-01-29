@@ -4,7 +4,7 @@
 include('requetes.generiques.php');
 
 //definition of the table that we will use
-$table = "users";
+$table = "User";
 
 
 /**
@@ -16,7 +16,7 @@ $table = "users";
  */
 function searchParNom(PDO $bdd, string $table, string $name){
     
-    return search($bdd, $table, ['username' => $name]);
+    return search($bdd, $table, ['Username' => $name]);
     
 }
 

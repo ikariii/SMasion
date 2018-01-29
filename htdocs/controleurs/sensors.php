@@ -8,14 +8,51 @@
 include('./modele/requetes.sensors.php');
 
 // if no function is define in the GET variable, we display the main page.
-if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
+if (!isset($_GET['function']) || empty($_GET['function'])) {
     $function = "sensors";
 } else {
-    $function = $_GET['fonction'];
+    $function = $_GET['function'];
 }
 
 switch ($function) {
     
+    case 'listesensor':
+        $vue = "sensorlist";
+        $title = "List of sensors";
+        $entete = "List:";
+
+        
+        //var_dump($function);
+        $liste = retrieveAll($bdd, $table);
+        
+        //var_dump($liste);
+        if(empty($liste)) {
+            $alerte = "No registered rooms yet";
+        }
+        
+        break;
+
+    case 'sensorsinroom':
+        $vue = "sensorsinroom";
+        $title = "Sensors in room";
+        $entete = "List:";
+        //$alerte = false;
+
+        $RoomId = $_GET['roomid'];
+        //var_dump($RoomId);
+        
+            
+           
+                $liste = searchById($bdd, $table, $RoomId);
+                
+                if(empty($liste)) {
+                    $alerte = "No sensor matching your criterion";
+                }
+            //var_dump($liste);
+        
+        
+        break; 
+
     case 'sensors':
         //list of sensors
         
@@ -33,26 +70,21 @@ switch ($function) {
         break;
         
     case 'ajout':
-        //Add a new sensor
+        //Add a new room
         
-        $title = "Add Sensor";
-        $vue = "ajout";
+        $title = "List of sensors";
+        $vue = "sensorlist";
         $alerte = false;
         
-        // This part of the code is called if a form was sent
-        if (isset($_POST['name']) and isset($_POST['type'])) {
-            
-            if( !isAString($_POST['name'])) {
-                $alerte = "Sensor name must be a string.";
-                
-            } else if( !isAString($_POST['type'])) {
-                $alerte = "Sensor type must be a string.";
-                
-            } else {
-                
+        $_count = count($_POST['sensorid']);
+        if($_count>0){
+            for($_i=0;$_i<$_count;$_i++){
                 $values =  [
-                    'name' => $_POST['name'],
-                    'type' => $_POST['type']
+                    'SensorId' => $_POST['sensorid'][$_i],
+                    'UserId' => $_POST['userid'][$_i],
+                    'SensorType' => $_POST['sensortype'][$_i],
+                    'RoomId' => $_POST['roomid'][$_i],
+                    'SensorName' => $_POST['sensorname'][$_i]
                 ];
                 
                 // Call the DB using a function from the model
@@ -61,10 +93,19 @@ switch ($function) {
                 if ($retour) {
                     $alerte = "Addition successful";
                 } else {
-                    $alerte = "Failure to add a sensor to the DB";
+                    $alerte = "Failure to add a room to the DB";
                 }
+        $liste = retrieveAll($bdd, $table);
+        
+        //var_dump($liste);
+        if(empty($liste)) {
+            $alerte = "No registered sensors yet";
+        }
+                
+                //var_dump($values);
             }
         }
+        
         
         break;
         

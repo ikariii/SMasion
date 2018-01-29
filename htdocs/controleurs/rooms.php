@@ -8,13 +8,11 @@
  */ 
 
 /**
- * User controler
+ * Room controler
  */
+
 // We include the user file from the model
-include('./modele/requetes.users.php');
-
-//var_dump($_POST['pwd']);
-
+include('./modele/requetes.rooms.php');
 
 // if the function is undefined, we display the main page
 if (!isset($_GET['function']) || empty($_GET['function'])) {
@@ -65,46 +63,61 @@ switch ($function) {
         $title = "Registration";
         break;
         
-    case 'liste':
-        $vue = "liste";
-        $title = "List of registered users";
+    case 'listeroom':
+        $vue = "roomlist";
+        $title = "List of rooms";
         $entete = "List:";
         
+        //var_dump($function);
         $liste = retrieveAll($bdd, $table);
         
+        //var_dump($liste);
         if(empty($liste)) {
-            $alerte = "No registered users yet";
+            $alerte = "No registered rooms yet";
         }
         
         break;
 
-    case 'login':
-        $vue = "frontpage";
-        $title = "Welcome!";
-
-
-        if (isset($_POST['username']) and isset($_POST['pwd'])) {
-
-            $values = [
-                    'username' => $_POST['username'],
-                    'password' => password_hash($_POST['pwd'], PASSWORD_DEFAULT) // password encryption
+    case 'ajout':
+        //Add a new room
+        
+        $title = "List of rooms";
+        $vue = "roomlist";
+        $alerte = false;
+        
+        $_count = count($_POST['roomid']);
+        if($_count>0){
+            for($_i=0;$_i<$_count;$_i++){
+                $values =  [
+                    'RoomId' => $_POST['roomid'][$_i],
+                    'RoomSize' => $_POST['roomsize'][$_i],
+                    'RoomType' => $_POST['roomtype'][$_i],
+                    'UserId' => $_POST['userid'][$_i],
+                    'AppId' => $_POST['appid'][$_i]
                 ];
-
-                //$retour = search($bdd,$values,$User);
-        }
-
-        //var_dump($_POST['function']);
-        break;
-
-    case 'userinfo':
-        $vue = "userinfo";
-        $title = "userinfo";
-
-        $userid = 1;
-        $username = "isep1";
+                
+                // Call the DB using a function from the model
+                $retour = insertion($bdd, $values, $table);
+                
+                if ($retour) {
+                    $alerte = "Addition successful";
+                } else {
+                    $alerte = "Failure to add a room to the DB";
+                }
+        $liste = retrieveAll($bdd, $table);
         
-
+        //var_dump($liste);
+        if(empty($liste)) {
+            $alerte = "No registered rooms yet";
+        }
+                
+                //var_dump($values);
+            }
+        }
+        
+        
         break;
+    
        
     default:
         // if no function matches the GET parameter
@@ -112,7 +125,6 @@ switch ($function) {
         $title = "error404";
         $message = "Erreur 404 : page not found.";
 }
-
 include ('vues/header.php');
 include ('vues/' . $vue . '.php');
 include ('vues/footer.php');

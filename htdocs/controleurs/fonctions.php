@@ -2,7 +2,7 @@
 /**
  * Controler functions
  */
-
+class demofun{
 
 /**
  * Determines if a variable is an integer
@@ -38,4 +38,22 @@ function isAPassword($string)
     }
 }
 
+
+
+//private $asd = "Hello furzoom!";
+function index(){
+    //$asd = "Hello furzoom!";
+    echo "hello";
+    /*
+    require("vues/index.php");
+    require("modele/functions.php");
+    $model = new Model();
+    $view = new Index();
+    //var_dump($model);
+    $asd = $model->getData($p);
+    $view->display($asd);
+    var_dump($asd);*/
+}
+
+}
 ?>
